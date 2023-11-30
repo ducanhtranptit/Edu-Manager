@@ -11,10 +11,10 @@ const passport = require("passport");
 const model = require("./models/index");
 
 const localPassport = require("./passport/localPassport");
+const googlePassport = require("./passport/googlePassport");
 
 const flash = require("connect-flash");
 
-const AuthMiddleware = require("./http/middlewares/AuthMiddleware");
 const GuestMiddleware = require("./http/middlewares/GuestMiddleware");
 
 const studentsRouter = require("./routes/students/index");
@@ -47,6 +47,7 @@ passport.deserializeUser(async function (id, done) {
 });
 
 passport.use("local", localPassport);
+passport.use("google", googlePassport);
 
 // view engine setup
 app.set("views", path.join(__dirname, "resources/views"));
@@ -62,7 +63,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
 
 //Routes
-app.use("/auth", AuthMiddleware, authRouter);
+app.use("/auth", authRouter);
 
 app.use(GuestMiddleware);
 

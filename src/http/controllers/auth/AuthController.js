@@ -12,44 +12,19 @@ class AuthController {
 		});
 	}
 
-	async register(req, res) {
-		return res.render("auth/register", {
-			layout: "layouts/auth.layout.ejs",
-		});
-	}
-
-	async handleRegister(req, res) {
-		const { name, email, password } = req.body;
-
-		try {
-			const user = await User.findOne({
-				where: {
-					email: email,
-				},
-			});
-
-			if (!user) {
-				const hashPassword = bcrypt.hashSync(password, saltRound);
-
-				await User.create({
-					name: name,
-					email: email,
-					password: hashPassword,
-				});
-				return res.redirect("/auth/login");
-			}
-			return res.redirect("/auth/register");
-		} catch (error) {
-			return res.render("error/500", { layout: false });
-		}
-	}
-
 	async logout(req, res, next) {
 		req.logout(function (err) {
 			if (err) {
 				return next(err);
 			}
-			res.redirect("/auth/login");
+			console.log("9999");
+			return res.redirect("/auth/login");
+		});
+	}
+
+	async forgotPassword(req, res) {
+		res.render("auth/forgotPassword", {
+			layout: "layouts/auth.layout.ejs",
 		});
 	}
 }
