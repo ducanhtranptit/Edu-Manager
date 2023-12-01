@@ -45,7 +45,7 @@ class AuthController {
 
 	async resetPassword(req, res) {
 		return res.render("auth/resetPassword", {
-			layout: false,
+			layout: "layouts/auth.layout.ejs",
 		});
 	}
 
