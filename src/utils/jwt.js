@@ -16,7 +16,7 @@ class JwtToken {
 			const decode = jwt.verify(token, jwtSecretKey);
 			return decode.data;
 		} catch (error) {
-			throw new Error(error);
+			return false;
 		}
 	}
 }

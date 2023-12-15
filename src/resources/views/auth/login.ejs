@@ -1,6 +1,10 @@
 <div class="card-body">
 	<p class="login-box-msg">Sign in to start your session</p>
 
+	<% if(msg?.length) { %>
+	<div class="alert alert-danger text-center"><%= msg %></div>
+	<% } %>
+
 	<form action="" method="post">
 		<div class="input-group mb-3">
 			<input type="email" name="email" class="form-control" placeholder="Email" />
@@ -28,7 +32,7 @@
 
 	<div class="social-auth-links text-center mt-2 mb-3">
 		<a href="#" class="btn btn-block btn-primary">
-			<i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+			<i class="fab fa-facebook mr-2"></i> Sign in using Facebook (not work)
 		</a>
 		<a href="/auth/google/redirect" class="btn btn-block btn-danger">
 			<i class="fab fa-google-plus mr-2"></i> Sign in using Google+

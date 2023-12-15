@@ -1,11 +1,12 @@
 const model = require("../../../models/index");
 class HomeController {
 	index(req, res) {
-		res.render("students/home/index");
+		return res.render("students/home/index");
 	}
 
 	getProfilePage(req, res) {
-		res.render("students/profile/index");
+		const userName = req.user.name;
+		return res.render("students/profile/index", { userName });
 	}
 }
 

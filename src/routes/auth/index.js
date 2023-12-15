@@ -16,8 +16,8 @@ router.post(
 	passport.authenticate("local", {
 		failureRedirect: "/auth/login",
 		failureFlash: true,
-		successRedirect: "/",
-	})
+	}),
+	AuthController.handleLogin
 );
 
 router.get("/google/redirect", passport.authenticate("google"));
@@ -32,7 +32,9 @@ router.get(
 );
 
 router.get("/forgot-password", AuthController.forgotPassword);
-router.get("/reset-password/:token", AuthController.resetPassword);
 router.post("/forgot-password", AuthController.sendMail);
+
+router.get("/reset-password/:token", AuthController.resetPassword);
+router.post("/reset-password/:token", AuthController.handleresetPassword);
 
 module.exports = router;

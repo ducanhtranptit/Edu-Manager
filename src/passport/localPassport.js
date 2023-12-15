@@ -19,7 +19,7 @@ module.exports = new LocalStrategy(
 		});
 
 		if (!user) {
-			done(null, false, { message: "Tên không tồn tại" });
+			done(null, false, { message: "Email không tồn tại" });
 			return;
 		}
 

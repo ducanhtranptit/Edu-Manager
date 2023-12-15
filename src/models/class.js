@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Class extends Model {
     /**
@@ -11,19 +9,46 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Class.belongsTo(models.Course, {
+        foreignKey: "courseId",
+      });
+      Class.belongsToMany(models.User, {
+        through: "ClassesTeacher",
+        foreignKey: "classId",
+      });
+      Class.hasMany(models.TeacherCalendar, {
+        foreignKey: "classId",
+      });
+      Class.hasMany(models.StudentsClasses, {
+        foreignKey: "classId",
+      });
+      Class.hasMany(models.StudentsAttendance, {
+        foreignKey: "classId",
+      });
+      Class.hasMany(models.Exercises, {
+        foreignKey: "classId",
+      });
     }
   }
-  Class.init({
-    name: DataTypes.STRING,
-    quantity: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE,
-    schedule: DataTypes.INTEGER,
-    timeLearn: DataTypes.STRING,
-    courseId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Class',
-  });
+  Class.init(
+    {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: DataTypes.STRING(200),
+      quantity: DataTypes.INTEGER,
+      startDate: DataTypes.DATE,
+      endDate: DataTypes.DATE,
+      schedule: DataTypes.TINYINT(1),
+      timeLearn: DataTypes.STRING(50),
+      courseId: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Class",
+    }
+  );
   return Class;
 };
