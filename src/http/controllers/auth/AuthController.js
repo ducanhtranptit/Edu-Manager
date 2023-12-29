@@ -70,6 +70,8 @@ class AuthController {
 
 		const verifyToken = JwtTokenUtils.decode(token);
 
+		console.log(verifyToken);
+
 		if (!verifyToken) {
 			return res.render("error/404", { layout: false });
 		}
