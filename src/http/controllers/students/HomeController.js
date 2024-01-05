@@ -6,7 +6,9 @@ class HomeController {
 
 	getProfilePage(req, res) {
 		const userName = req.user.name;
-		return res.render("students/profile/index", { userName });
+		let socials = "...";
+		const msg = "";
+		return res.render("students/profile/index", { userName, socials, msg });
 	}
 }
 
