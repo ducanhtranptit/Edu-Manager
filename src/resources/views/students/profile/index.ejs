@@ -1,0 +1,220 @@
+<div class="card card-primary card-outline mt-4">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-5 col-sm-3">
+				<div
+					class="nav flex-column nav-tabs h-100"
+					id="vert-tabs-tab"
+					role="tablist"
+					aria-orientation="vertical"
+				>
+					<a
+						class="nav-link active"
+						id="vert-tabs-home-tab"
+						data-toggle="pill"
+						href="#vert-tabs-home"
+						role="tab"
+						aria-controls="vert-tabs-home"
+						aria-selected="true"
+						>Thông tin tài khoản</a
+					>
+					<a
+						class="nav-link"
+						id="vert-tabs-profile-tab"
+						data-toggle="pill"
+						href="#vert-tabs-profile"
+						role="tab"
+						aria-controls="vert-tabs-profile"
+						aria-selected="true"
+						>Liên kết mạng xã hội</a
+					>
+					<a
+						class="nav-link"
+						id="vert-tabs-messages-tab"
+						data-toggle="pill"
+						href="#vert-tabs-messages"
+						role="tab"
+						aria-controls="vert-tabs-messages"
+						aria-selected="true"
+						>Đổi mật khẩu</a
+					>
+				</div>
+			</div>
+			<div class="col-7 col-sm-9">
+				<div class="tab-content" id="vert-tabs-tabContent">
+					<div
+						class="tab-pane text-left fade show active"
+						id="vert-tabs-home"
+						role="tabpanel"
+						aria-labelledby="vert-tabs-home-tab"
+					>
+						<div>Thông tin tài khoản</div>
+					</div>
+					<div
+						class="tab-pane fade"
+						id="vert-tabs-profile"
+						role="tabpanel"
+						aria-labelledby="vert-tabs-profile-tab"
+					>
+						<div>
+							<div class="mt-2 d-flex align-items-center" style="gap: 8px">
+								<h5>Liên kết tài khoản Google</h5>
+								<!-- <i class="fab fa-google-plus mr-2"></i> -->
+								<input type="checkbox" name="google" <%- socials.includes('google')
+								? "checked" : "" %> data-bootstrap-switch >
+							</div>
+							<div class="mt-4 d-flex align-items-center" style="gap: 8px">
+								<h5>Liên kết tài khoản Facebook</h5>
+								<!-- <i class="fab fa-facebook mr-2"></i> -->
+								<input type="checkbox" name="facebook" <%-
+								socials.includes('facebook') ? "checked" : "" %>
+								data-bootstrap-switch>
+							</div>
+							<div class="mt-4 d-flex align-items-center" style="gap: 8px">
+								<h5>Liên kết tài khoản Github</h5>
+								<!-- <i class="fab fa-github mr-2"></i> -->
+								<input type="checkbox" name="github" <%- socials.includes('github')
+								? "checked" : "" %> data-bootstrap-switch>
+							</div>
+						</div>
+						<div>
+							<button
+								type="button"
+								class="btn btn-primary btn-connect-social"
+								data-toggle="modal"
+								data-target="#modalConnectSocial"
+								hidden
+							></button>
+
+							<!-- Modal -->
+							<div
+								class="modal fade"
+								id="modalConnectSocial"
+								tabindex="-1"
+								aria-labelledby="exampleModalLabel"
+								aria-hidden="true"
+							>
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											Bạn có chắc muốn liên kết mạng xã hội này không?
+										</div>
+										<div class="modal-footer">
+											<button
+												type="button"
+												class="btn btn-secondary"
+												data-dismiss="modal"
+											>
+												Hủy
+											</button>
+											<a href="#" class="btn btn-primary link-social"
+												>Liên kết</a
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button
+								type="button"
+								class="btn btn-primary btn-disable-social"
+								data-toggle="modal"
+								data-target="#modalDisableSocial"
+								hidden
+							></button>
+
+							<!-- Modal -->
+							<div
+								class="modal fade"
+								id="modalDisableSocial"
+								tabindex="-1"
+								aria-labelledby="exampleModalLabel"
+								aria-hidden="true"
+							>
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											Bạn có chắc chắn muốn hủy liên kết mạng xã hội này
+											không?
+										</div>
+										<div class="modal-footer">
+											<button
+												type="button"
+												class="btn btn-secondary"
+												data-dismiss="modal"
+											>
+												Hủy
+											</button>
+											<a href="#" class="btn btn-primary disable-social"
+												>Hủy liên kết</a
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="tab-pane fade"
+						id="vert-tabs-messages"
+						role="tabpanel"
+						aria-labelledby="vert-tabs-messages-tab"
+					>
+						<div>
+							<div class="card card-warning" style="min-width: 600px">
+								<%- msg !== "" && typeof msg !== "undefined" ? `
+								<div class="alert alert-${msgType}">${msg}</div>
+								`: ''; %>
+								<form method="POST">
+									<div class="card-body">
+										<div class="form-group">
+											<label for="oldPassword">Mật khẩu cũ</label>
+											<input
+												type="password"
+												class="form-control"
+												id="oldPassword"
+												placeholder="Mật khẩu cũ"
+												name="old_password"
+											/>
+										</div>
+										<div class="form-group">
+											<label for="newPassword">Mật khẩu mới</label>
+											<input
+												type="password"
+												class="form-control"
+												id="newPassword"
+												placeholder="Mật khẩu mới"
+												name="new_password"
+											/>
+										</div>
+										<div class="form-group">
+											<label for="retypeNewPassword"
+												>Nhập lại mật khẩu mới</label
+											>
+											<input
+												type="password"
+												class="form-control"
+												id="retypeNewPassword"
+												placeholder="Nhập lại mật khẩu mới"
+												name="retype_new_password"
+											/>
+										</div>
+									</div>
+									<!-- /.card-body -->
+
+									<div class="card-footer">
+										<button type="submit" class="btn btn-primary">
+											Đổi mật khẩu
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.card -->
+	</div>
+</div>
